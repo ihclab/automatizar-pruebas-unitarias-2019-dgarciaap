@@ -1,5 +1,6 @@
 using System;
 using System.IO;
+using System.Collections;
 
 class Test
 {
@@ -12,11 +13,14 @@ class Test
             using (StreamReader sr = new StreamReader("CasosPrueba.txt"))
             {
                 string line;
+                ArrayList valores = new ArrayList();
                 // Read and display lines from the file until the end of
                 // the file is reached.
                 while ((line = sr.ReadLine()) != null)
                 {
-                    Console.WriteLine(line);
+                    //Console.WriteLine(line);
+                    valores.Add(line.Split(':')); 
+                    Console.WriteLine(valores[0]);  
                 }
             }
         }

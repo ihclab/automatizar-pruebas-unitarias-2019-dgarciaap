@@ -1,0 +1,11 @@
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.csprojAssemblyReference.cache
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.csproj.CoreCompileInputs.cache
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.AssemblyInfoInputs.cache
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.AssemblyInfo.cs
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\bin\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.deps.json
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\bin\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.runtimeconfig.json
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\bin\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.runtimeconfig.dev.json
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\bin\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.dll
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\bin\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.pdb
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.dll
+C:\Users\DELL\automatizar-pruebas-unitarias-2019-dgarciaap\obj\Debug\netcoreapp2.1\automatizar-pruebas-unitarias-2019-dgarciaap.pdb
