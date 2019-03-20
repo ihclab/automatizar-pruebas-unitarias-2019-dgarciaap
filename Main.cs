@@ -56,8 +56,9 @@ class Test
                     } 
                     else {
                         double result = Double.Parse(texto[i][3]);
+                        Console.WriteLine(result);
                     }
-                    Console.WriteLine(texto[i][3]);
+                    
                 }
             }
         }
