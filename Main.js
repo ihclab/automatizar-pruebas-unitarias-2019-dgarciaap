@@ -6,5 +6,11 @@ Fs.readFile('./CasosPrueba.txt', 'utf-8', (err, data) => {
     }
     else {
         console.log(data);
+        let renglon = data.split('\r\n');
+        let campos = [];
+        renglon.forEach(element => {
+            campos.push(element.split(':'));
+        })
+        console.log(campos);
     }
 })
