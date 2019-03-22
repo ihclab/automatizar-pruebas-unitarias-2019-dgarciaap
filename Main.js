@@ -1,6 +1,10 @@
 const Fs = require('fs');
+const m = require('./Medias');
 
 class Main {
+    constructor() {
+        this.media = new m();
+    }
     leerArchivo() {
         Fs.readFile('./CasosPrueba.txt', 'utf-8', (err, data) => {
             if(err) {
@@ -15,10 +19,41 @@ class Main {
             //console.log(campos);
             // if()
             let numero = this.espacios(campos);
-            this.parse(numero);
+            numero = this.parse(numero);
+            let esperados = [];
+            for (let i = 0; i < campos.length; i++) {
+                esperados[i] = this.funciones(campos[i][1], numero[i]);                
+            }
+            esperados = this.compararResultados(esperados, campos);
+            console.log(esperados);
         }
     })
 }
+
+    compararResultados(esperados, campos) {
+        let booleanos = [];
+        for (let i = 0; i < campos.length; i++) {
+            if(campos[i][3] == esperados[i]) {
+                booleanos.push(true);
+            }
+            else {
+                booleanos.push(false);
+            }
+        }
+        return booleanos;
+    }
+
+    funciones(funcion, parametros) {
+        let m = 0;
+        if(funcion == 'mediaAritmetica') {
+            m = this.media.mediaAritmetica(parametros);
+            //console.log(parametros);
+        }
+        else if(funcion == 'mediaGeometrica') {
+            m = this.media.mediaGeometrica(parametros);
+        }
+        return m;
+    }
 
     espacios(campos) {
         let numeros = [];
@@ -38,7 +73,7 @@ class Main {
             // })
             valoresFinalFinal.push(this.convertirNumero(numeros[i]));
         }
-        console.log(valoresFinalFinal);
+        //console.log(valoresFinalFinal);
         return valoresFinalFinal;
     }
 
