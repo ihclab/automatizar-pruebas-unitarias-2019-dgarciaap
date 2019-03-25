@@ -33,10 +33,13 @@ class Main {
     compararResultados(esperados, campos) {
         let booleanos = [];
         for (let i = 0; i < campos.length; i++) {
-            if(campos[i][3] == esperados[i]) {
+            if(isNaN(campos[i][3])) {
+                booleanos.push(null);
+            }
+            else if(campos[i][3] == esperados[i]) {
                 booleanos.push(true);
             }
-            else {
+            else if(campos[i][3] != esperados[i]){
                 booleanos.push(false);
             }
         }
@@ -60,7 +63,6 @@ class Main {
         campos.forEach(elements => {
             numeros.push(elements[2].split(' '));
         })
-        //console.log(numeros);
         return numeros;
     }
 
