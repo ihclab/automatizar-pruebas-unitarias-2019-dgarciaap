@@ -5,8 +5,8 @@
         let suma = 0;
         vals.forEach(element => {
             suma += element;
-            return (suma/vals.length).toFixed(4);
         }); 
+            return (suma/vals.length).toFixed(4);
         }
         catch(err) {
             throw new Error(err);
@@ -15,10 +15,10 @@
 
     raizEnesima(x, n) {
         try {
-        return Math.pow(x,(1/n));
+            return Math.pow(x,(1/n));
         }
         catch(err) {
-            return new Error(err);
+            throw new Error(err);
         }
     }
 
@@ -27,8 +27,8 @@
         let mult = 1;
         vals.forEach(element => {
             mult *= element;
-            return this.raizEnesima(mult, vals.length).toFixed(4);
         });
+            return this.raizEnesima(mult, vals.length).toFixed(4);
         }
         catch(err) {
             throw new Error(err);

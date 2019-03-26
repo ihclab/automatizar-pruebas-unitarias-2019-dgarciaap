@@ -15,25 +15,26 @@ class Main {
                 let campos = [];
                 renglones.forEach(element => {
                     campos.push(element.split(':'));
-            })
-            //console.log(campos);
-            // if()
-            let numero = this.espacios(campos);
-            numero = this.parse(numero);
-            //console.log(numero);
-            let esperados = [];
-            for (let i = 0; i < campos.length; i++) {
-                /*if(i == 2) {
-                    esperados[i] = this.funciones(campos[i][1], numero[i])
-                }*/
-                esperados[i] = this.funciones(campos[i][1], numero[i]);
+                });
+                let numero = this.espacios(campos);
+                numero = this.parse(numero);
+                let esperados = [];
+                for (let i = 0; i < numero.length; i++) {
+                    esperados.push(this.funciones(campos[i][1],numero[i]));
+                }
+                esperados = this.compararResultados(esperados, campos);
+                console.log(esperados);
             }
-            //esperados = this.compararResultados(esperados, campos);
-            console.log(esperados);
-        }
-    })
-}
-
+        })
+    }
+    
+    espacios(campos) {
+        let numeros = [];
+        campos.forEach(elements => {
+            numeros.push(elements[2].split(' '));
+        })
+        return numeros;
+    }
     compararResultados(esperados, campos) {
         try {
             let booleanos = [];
@@ -44,8 +45,8 @@ class Main {
                 else if(campos[i][3] != esperados[i]){
                     booleanos.push(false);
                 }
-                return booleanos;
             }
+            return booleanos;
         }
         catch(err) {
             console.log(err);
@@ -54,52 +55,39 @@ class Main {
 
     funciones(funcion, parametros) {
         try {
-            let m = 0;
+            let a = 0;
             if(funcion == 'mediaAritmetica') {
-                console.log(parametros);
-                m = this.media.mediaAritmetica(parametros);
+                a = this.media.mediaAritmetica(parametros);
             }
             else if(funcion == 'mediaGeometrica') {
-                console.log(parametros);
-                m = this.media.mediaGeometrica(parametros);
+                a = this.media.mediaGeometrica(parametros);
             }
-            return m;
+            else if(funcion == 'mediaArmonica') {
+                a = this.media.mediaArmonica(parametros);
+            }
+            return a;
         }
         catch(err) {
             console.log(err);
         }
     }
 
-    espacios(campos) {
-        let numeros = [];
-        campos.forEach(elements => {
-            numeros.push(elements[2].split(' '));
-        })
-        return numeros;
-    }
 
     parse(numeros) {
         let valoresFinalFinal = [];
-
-        for (let i = 0; i < numeros.length; i++) {
-            // console.log(numeros[i]);
-            // parametros[i].forEach(element => {
-            // })
-            valoresFinalFinal.push(this.convertirNumero(numeros[i]));
-        }
-        //console.log(valoresFinalFinal);
+        numeros.forEach(element => {
+            if(element[0] === 'NULL')
+                valoresFinalFinal.push(null);
+            else 
+                valoresFinalFinal.push(this.convertirNumero(element));
+        });
         return valoresFinalFinal;
     }
 
     convertirNumero(numeros){
         let a = [];
         numeros.forEach(numero => {
-            if(numero == 'NULL') {
-                a.push(null);
-            }
-            else {
-                a.push(parseInt(numero,10));
-            }
+            a.push(parseInt(numero,10));
         });
         return a;
     }
