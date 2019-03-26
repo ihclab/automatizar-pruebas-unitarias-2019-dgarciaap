@@ -20,42 +20,54 @@ class Main {
             // if()
             let numero = this.espacios(campos);
             numero = this.parse(numero);
+            //console.log(numero);
             let esperados = [];
             for (let i = 0; i < campos.length; i++) {
-                esperados[i] = this.funciones(campos[i][1], numero[i]);                
+                /*if(i == 2) {
+                    esperados[i] = this.funciones(campos[i][1], numero[i])
+                }*/
+                esperados[i] = this.funciones(campos[i][1], numero[i]);
             }
-            esperados = this.compararResultados(esperados, campos);
+            //esperados = this.compararResultados(esperados, campos);
             console.log(esperados);
         }
     })
 }
 
     compararResultados(esperados, campos) {
-        let booleanos = [];
-        for (let i = 0; i < campos.length; i++) {
-            if(isNaN(campos[i][3])) {
-                booleanos.push(null);
-            }
-            else if(campos[i][3] == esperados[i]) {
-                booleanos.push(true);
-            }
-            else if(campos[i][3] != esperados[i]){
-                booleanos.push(false);
+        try {
+            let booleanos = [];
+            for (let i = 0; i < campos.length; i++) {
+                if(campos[i][3] == esperados[i]) {
+                    booleanos.push(true);
+                }
+                else if(campos[i][3] != esperados[i]){
+                    booleanos.push(false);
+                }
+                return booleanos;
             }
         }
-        return booleanos;
+        catch(err) {
+            console.log(err);
+        }
     }
 
     funciones(funcion, parametros) {
-        let m = 0;
-        if(funcion == 'mediaAritmetica') {
-            m = this.media.mediaAritmetica(parametros);
-            //console.log(parametros);
+        try {
+            let m = 0;
+            if(funcion == 'mediaAritmetica') {
+                console.log(parametros);
+                m = this.media.mediaAritmetica(parametros);
+            }
+            else if(funcion == 'mediaGeometrica') {
+                console.log(parametros);
+                m = this.media.mediaGeometrica(parametros);
+            }
+            return m;
         }
-        else if(funcion == 'mediaGeometrica') {
-            m = this.media.mediaGeometrica(parametros);
+        catch(err) {
+            console.log(err);
         }
-        return m;
     }
 
     espacios(campos) {
@@ -82,7 +94,12 @@ class Main {
     convertirNumero(numeros){
         let a = [];
         numeros.forEach(numero => {
-            a.push(parseInt(numero,10));
+            if(numero == 'NULL') {
+                a.push(null);
+            }
+            else {
+                a.push(parseInt(numero,10));
+            }
         });
         return a;
     }
