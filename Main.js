@@ -16,8 +16,10 @@ class Main {
                 renglones.forEach(element => {
                     campos.push(element.split(':'));
                 });
+                //Splittear y convertir en 
                 let numero = this.espacios(campos);
                 numero = this.parse(numero);
+                let cadena = '000';
                 let esperados = [];
                 for (let i = 0; i < numero.length; i++) {
                     esperados.push(this.funciones(campos[i][1],numero[i]));
@@ -37,13 +39,15 @@ class Main {
     }
     compararResultados(esperados, campos) {
         try {
+            let exito = 'Éxito';
+            let falla = 'Falla';
             let booleanos = [];
             for (let i = 0; i < campos.length; i++) {
                 if(campos[i][3] == esperados[i]) {
-                    booleanos.push(true);
+                    booleanos.push(exito.fontcolor('green'));
                 }
                 else if(campos[i][3] != esperados[i]){
-                    booleanos.push(false);
+                    booleanos.push(falla.fontcolor('red'));
                 }
             }
             return booleanos;
@@ -64,6 +68,9 @@ class Main {
             }
             else if(funcion == 'mediaArmonica') {
                 a = this.media.mediaArmonica(parametros);
+            }
+            else {
+                a = 'Método no encontrado';
             }
             return a;
         }
