@@ -11,21 +11,34 @@ class Main {
                 console.log(err);
             }
             else {
-                let renglones = data.split('\r\n');
-                let campos = [];
-                renglones.forEach(element => {
-                    campos.push(element.split(':'));
-                });
-                //Splittear y convertir en 
-                let numero = this.espacios(campos);
-                numero = this.parse(numero);
-                let cadena = '000';
-                let esperados = [];
-                for (let i = 0; i < numero.length; i++) {
-                    esperados.push(this.funciones(campos[i][1],numero[i]));
-                }
-                esperados = this.compararResultados(esperados, campos);
-                console.log(esperados);
+                //let endTime = new Date(); //ms al comenzar
+                    //Splittear por salto de líne y después por :
+                    let renglones = data.split('\r\n');
+                    let campos = [];
+                    renglones.forEach(element => {
+                        campos.push(element.split(':'));
+                    });
+                    //Splittear y convertir en int
+                    let numero = this.espacios(campos);
+                    numero = this.parse(numero);
+                    //Cadena para concatenar resultados de pruebas
+                    let cadena = '000';
+                    //Ejecutar funciones y comparar con valores esperados
+                    let esperados = [];
+                    for (let i = 0; i < numero.length; i++) {
+                        esperados.push(this.funciones(campos[i][1],numero[i]));
+                        //console.log(endTime.getTime().toFixed(4) + 'ms');
+                    }
+                    esperados = this.compararResultados(esperados, campos);
+                    for (let i = 0; i < esperados.length; i++) {
+                        if(esperados[i] == 'Éxito') { //Color verde
+                            console.log('\x1b[32m' + esperados[i]);
+                        }  
+                        else { //Color rojo
+                            console.log('\x1b[31m' + esperados[i]);
+                        }
+                    }
+                        //console.log(esperados);
             }
         })
     }
@@ -39,15 +52,15 @@ class Main {
     }
     compararResultados(esperados, campos) {
         try {
-            let exito = 'Éxito';
-            let falla = 'Falla';
+            /*let exito = 'Éxito';
+            let falla = 'Falla';*/
             let booleanos = [];
             for (let i = 0; i < campos.length; i++) {
                 if(campos[i][3] == esperados[i]) {
-                    booleanos.push(exito.fontcolor('green'));
+                    booleanos.push('Éxito');
                 }
                 else if(campos[i][3] != esperados[i]){
-                    booleanos.push(falla.fontcolor('red'));
+                    booleanos.push('Falla');
                 }
             }
             return booleanos;
