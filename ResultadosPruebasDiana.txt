@@ -1,0 +1,13 @@
+0001 Éxito mediaAritmetica Calculado = 4.6667 T.E: 1553797841790ms
+0002 Éxito mediaAritmetica Calculado = 3.0000 T.E: 1553797841790ms
+0003 Éxito mediaAritmetica Calculado = 10.5000 T.E: 1553797841790ms
+0004 Falla mediaGeometrica Calculado = 5.6569 Esperado: 6.6569 T.E: 1553797841790ms
+0005 Éxito mediaGeometrica Calculado = 0.0000 T.E: 1553797841790ms
+0006 Éxito mediaGeometrica Calculado = 4.0000 T.E: 1553797841790ms
+0007 Falla mediaArmonica Calculado = Método no implementado Esperado: 3.4286 T.E: 1553797841790ms
+0008 Falla mediaArmonica Calculado = Método no implementado Esperado: 3.0000 T.E: 1553797841790ms
+0009 Falla mediaAritmetica Calculado = 5.5000 Esperado: 0.0000 T.E: 1553797841790ms
+0010 Falla mediaGeometrica Calculado = undefined Esperado: Exception T.E: 1553797841790ms
+0011 Éxito mediaAritmetica Calculado = 0 T.E: 1553797841790ms
+0012 Éxito mediaGeometrica Calculado = 0 T.E: 1553797841790ms
+0013 Falla mediaNoExiste Calculado = Método no encontrado Esperado: 3.0320 T.E: 1553797841790ms
