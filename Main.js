@@ -29,15 +29,34 @@ class Main {
                         esperados.push(this.funciones(campos[i][1],numero[i]));
                         //console.log(endTime.getTime().toFixed(4) + 'ms');
                     }
-                    esperados = this.compararResultados(esperados, campos);
-                    for (let i = 0; i < esperados.length; i++) {
-                        if(esperados[i] == 'Éxito') { //Color verde
-                            console.log('\x1b[32m' + esperados[i]);
-                        }  
-                        else { //Color rojo
-                            console.log('\x1b[31m' + esperados[i]);
+                    let resultados = [];
+                    let endTime = new Date();
+                    resultados = this.compararResultados(esperados, campos);
+                    //Imprimir resultados en consola y hacer txt
+                    let stream = Fs.createWriteStream("ResultadosPruebasDiana.txt");
+                    stream.once('open', (fd) => {
+                        console.group("Pruebas");
+                        for (let i = 0; i < resultados.length; i++) {
+                            if(resultados[i] == 'Éxito') { //Color verde
+                                stream.write(campos[i][0] + ' ' +
+                                resultados[i] + ' ' + campos[i][1] + ' Calculado = ' +
+                                esperados[i] + ' T.E: ' + endTime.getTime() + 'ms\n');
+                                console.log('\x1b[32m' + campos[i][0] + ' ' +
+                                 resultados[i] + ' ' + campos[i][1] + ' Calculado = ' +
+                                 esperados[i] + ' T.E: ' + endTime.getTime() + 'ms');
+                            }  
+                            else { //Color rojo
+                                stream.write(campos[i][0] + ' ' + resultados[i]
+                                + ' ' + campos[i][1] + ' Calculado = ' + esperados[i] + 
+                                ' Esperado: ' + campos[i][3] +' T.E: ' + endTime.getTime() + 'ms\n');
+                                console.log('\x1b[31m' + campos[i][0] + ' ' + resultados[i]
+                                 + ' ' + campos[i][1] + ' Calculado = ' + esperados[i] + 
+                                 ' Esperado: ' + campos[i][3] +' T.E: ' + endTime.getTime() + 'ms');
+                            }
                         }
-                    }
+                        console.groupEnd();
+                        stream.end();
+                    });
                         //console.log(esperados);
             }
         })
