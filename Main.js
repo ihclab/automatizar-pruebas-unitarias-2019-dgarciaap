@@ -1,5 +1,6 @@
 const Fs = require('fs');
 const m = require('./Medias');
+const tiempo = require('perf_hooks').performance;
 
 class Main {
     constructor() {
@@ -11,7 +12,8 @@ class Main {
                 console.log(err);
             }
             else {
-                //let endTime = new Date(); //ms al comenzar
+                let inicio = tiempo.now();
+                let fin;
                     //Splittear por salto de líne y después por :
                     let renglones = data.split('\r\n');
                     let campos = [];
@@ -30,8 +32,8 @@ class Main {
                         //console.log(endTime.getTime().toFixed(4) + 'ms');
                     }
                     let resultados = [];
-                    let endTime = new Date();
                     resultados = this.compararResultados(esperados, campos);
+                    fin = tiempo.now();
                     //Imprimir resultados en consola y hacer txt
                     let stream = Fs.createWriteStream("ResultadosPruebasDiana.txt");
                     stream.once('open', (fd) => {
@@ -40,18 +42,18 @@ class Main {
                             if(resultados[i] == 'Éxito') { //Color verde
                                 stream.write(campos[i][0] + ' ' +
                                 resultados[i] + ' ' + campos[i][1] + ' Calculado = ' +
-                                esperados[i] + ' T.E: ' + endTime.getTime() + 'ms\n');
+                                esperados[i] + ' T.E: ' + (inicio - fin).toFixed(4) + 'ms\n');
                                 console.log('\x1b[32m' + campos[i][0] + ' ' +
                                  resultados[i] + ' ' + campos[i][1] + ' Calculado = ' +
-                                 esperados[i] + ' T.E: ' + endTime.getTime() + 'ms');
+                                 esperados[i] + ' T.E: ' + (inicio - fin).toFixed(4) + 'ms');
                             }  
                             else { //Color rojo
                                 stream.write(campos[i][0] + ' ' + resultados[i]
                                 + ' ' + campos[i][1] + ' Calculado = ' + esperados[i] + 
-                                ' Esperado: ' + campos[i][3] +' T.E: ' + endTime.getTime() + 'ms\n');
+                                ' Esperado: ' + campos[i][3] +' T.E: ' + (inicio - fin).toFixed(4) + 'ms\n');
                                 console.log('\x1b[31m' + campos[i][0] + ' ' + resultados[i]
                                  + ' ' + campos[i][1] + ' Calculado = ' + esperados[i] + 
-                                 ' Esperado: ' + campos[i][3] +' T.E: ' + endTime.getTime() + 'ms');
+                                 ' Esperado: ' + campos[i][3] +' T.E: ' + (inicio - fin).toFixed(4) + 'ms');
                             }
                         }
                         console.groupEnd();
@@ -71,8 +73,6 @@ class Main {
     }
     compararResultados(esperados, campos) {
         try {
-            /*let exito = 'Éxito';
-            let falla = 'Falla';*/
             let booleanos = [];
             for (let i = 0; i < campos.length; i++) {
                 if(campos[i][3] == esperados[i]) {
